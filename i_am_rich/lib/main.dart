@@ -14,7 +14,7 @@ void main() {
         backgroundColor: Colors.blueGrey,
         body: Center(
           child: Image(
-            image: AssetImage('images/CM-Flutter-experience.jpg'),
+            image: AssetImage('images/i_am_rich_app_icon.png'),
           ),
         ),
       ),

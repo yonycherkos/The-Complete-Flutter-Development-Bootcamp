@@ -6,13 +6,15 @@ void main() {
     MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('I Am Rich'),
+          title: Center(
+            child: Text('I Am Rich'),
+          ),
           backgroundColor: Colors.blueGrey[900],
         ),
         backgroundColor: Colors.blueGrey,
         body: Center(
           child: Image(
-            image: NetworkImage('https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-260nw-407021107.jpg'),
+            image: AssetImage('images/CM-Flutter-experience.jpg'),
           ),
         ),
       ),

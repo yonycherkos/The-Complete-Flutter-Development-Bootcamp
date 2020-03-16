@@ -12,29 +12,17 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.teal,
         body: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Container(
-                child: Text('container 1'),
-                color: Colors.white,
-                width: 125.0,
-                height: 100.0,
-                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+              CircleAvatar(
+                radius: 50.0,
+                backgroundImage: AssetImage('images/yony.jpg'),
               ),
-              Container(
-                child: Text('container 2'),
-                color: Colors.red,
-                width: 125.0,
-                height: 100.0,
-                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-              ),
-              Container(
-                child: Text('container 3'),
-                color: Colors.lightBlue,
-                width: 125.0,
-                height: 100.0,
-                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-              )
+              Text(
+                  'Yonathan Cherkos',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30.0
+                  ),),
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
+import 'results_page.dart';
 
 enum Gender { male, female }
 
@@ -12,7 +13,6 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-
   Gender selectedGender;
   int height = 180;
   int weight = 60;
@@ -32,7 +32,9 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.male ? kActiveCardColor : kInactiveCardColor,
+                    color: selectedGender == Gender.male
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     child: IconContent(
                       icon: FontAwesomeIcons.mars,
                       label: "MALE",
@@ -46,7 +48,9 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.female ? kActiveCardColor : kInactiveCardColor,
+                    color: selectedGender == Gender.female
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     child: IconContent(
                       icon: FontAwesomeIcons.venus,
                       label: "FEMALE",
@@ -100,14 +104,14 @@ class _InputPageState extends State<InputPage> {
                       ),
                     ),
                     child: Slider(
-                        value: height.toDouble(),
-                        min: 120.0,
-                        max: 220.0,
-                        onChanged: (double newValue) {
-                          setState(() {
-                            height = newValue.round();
-                          });
-                        },
+                      value: height.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
                     ),
                   ),
                 ],
@@ -153,7 +157,9 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                             ),
-                            SizedBox(width: 10.0,),
+                            SizedBox(
+                              width: 10.0,
+                            ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
@@ -193,7 +199,9 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                             ),
-                            SizedBox(width: 10.0,),
+                            SizedBox(
+                              width: 10.0,
+                            ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
@@ -211,11 +219,27 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 10.0),
-            height: kBottomContainerHeight,
-            width: double.infinity,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(),
+                ),
+              );
+            },
+            child: Container(
+              child: Center(
+                child: Text(
+                  'CALCULATE',
+                  style: kNumberTextStyle,
+                ),
+              ),
+              color: kBottomContainerColor,
+              margin: EdgeInsets.only(top: 10.0),
+              height: kBottomContainerHeight,
+              width: double.infinity,
+            ),
           ),
         ],
       ),
@@ -244,4 +268,3 @@ class RoundIconButton extends StatelessWidget {
     );
   }
 }
-

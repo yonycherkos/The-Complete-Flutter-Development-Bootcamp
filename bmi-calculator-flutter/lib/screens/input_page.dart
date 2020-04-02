@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../components/icon_content.dart';
-import '../components/reusable_card.dart';
-import '../constants.dart';
+import 'package:bmi_calculator/components/icon_content.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:bmi_calculator/constants.dart';
 import 'results_page.dart';
-import '../components/bottom_button.dart';
-import '../components/round_icon_button.dart';
+import 'package:bmi_calculator/components/bottom_button.dart';
+import 'package:bmi_calculator/components/round_icon_button.dart';
+import 'package:bmi_calculator/calculate_brain.dart';
 
 enum Gender { male, female }
 
@@ -29,6 +30,7 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         children: <Widget>[
           Expanded(
+            flex: 9,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -68,6 +70,7 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
+            flex: 8,
             child: ReusableCard(
               color: kActiveCardColor,
               child: Column(
@@ -99,10 +102,10 @@ class _InputPageState extends State<InputPage> {
                       thumbColor: Color(0xFFEB1555),
                       overlayColor: Color(0x29B1555),
                       thumbShape: RoundSliderThumbShape(
-                        enabledThumbRadius: 15.0,
+                        enabledThumbRadius: 10.0,
                       ),
                       overlayShape: RoundSliderOverlayShape(
-                        overlayRadius: 30.0,
+                        overlayRadius: 15.0,
                       ),
                     ),
                     child: Slider(
@@ -121,6 +124,7 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
+            flex: 9,
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -224,10 +228,19 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             buttonTitle: 'CALCULATE',
             onTap: () {
+              CalculateBrain calc = CalculateBrain(
+                height: height,
+                weight: weight,
+              );
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ResultsPage(),
+                  builder: (context) => ResultsPage(
+                    bmiResult: calc.calculateBMI(),
+                    resultText: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
                 ),
               );
             },

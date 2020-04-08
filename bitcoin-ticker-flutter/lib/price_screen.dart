@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'coin_data.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -6,7 +7,16 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-  String selectedCurrancy = 'USD';
+  String selectedCurrency = 'USD';
+
+  List<DropdownMenuItem<String>> getDropdownItems() {
+    List<DropdownMenuItem<String>> dropdownMenuItemList = [];
+    for(String currency in currenciesList) {
+      var newDropdownMenuItem = DropdownMenuItem(child: Text(currency), value: currency,);
+      dropdownMenuItemList.add(newDropdownMenuItem);
+    }
+    return dropdownMenuItemList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,24 +55,11 @@ class _PriceScreenState extends State<PriceScreen> {
             padding: EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
             child: DropdownButton(
-                value: selectedCurrancy,
-                items: [
-                  DropdownMenuItem(
-                    child: Text('USD'),
-                    value: 'USD',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('BRL'),
-                    value: 'BRL',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('CAD'),
-                    value: 'CAD',
-                  ),
-                ],
+                value: selectedCurrency,
+                items: getDropdownItems(),
                 onChanged: (value) {
                   setState(() {
-                    selectedCurrancy = value;
+                    selectedCurrency = value;
                   });
                 }),
           ),

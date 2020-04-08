@@ -4,13 +4,19 @@ import 'package:clima/services/networking.dart';
 const apiKey = 'b6907d289e10d714a6e88b30761fae22';
 
 class WeatherModel {
-  Future<dynamic> getLocationData() async {
+  Future<dynamic> getCityWeather(String cityName) async {
+    var url = 'https://samples.openweathermap.org/data/2.5/weather?q=$cityName&appid=$apiKey&units=metric';
+    Network network = Network(url);
+      var weatherData = await network.getData();
+      return weatherData;
+    }
+
+  Future<dynamic> getLocationWeather() async {
     Location location = Location();
     await location.getCurrentLocation();
+    var url = 'https://samples.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric';
 
-    Network network = Network(
-        url:
-        'https://samples.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric');
+    Network network = Network(url);
     var weatherData = await network.getData();
     return weatherData;
   }

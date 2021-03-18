@@ -62,7 +62,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  FlatButton(
+                  TextButton(
                     onPressed: () async {
                       var weatherData = await weatherModel.getLocationWeather();
                       updateUI(weatherData);
@@ -72,7 +72,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       size: 50.0,
                     ),
                   ),
-                  FlatButton(
+                  TextButton(
                     onPressed: () async {
                       var typedName = await Navigator.push(
                         context,
@@ -83,7 +83,8 @@ class _LocationScreenState extends State<LocationScreen> {
                         ),
                       );
                       if (typedName != null) {
-                        var weatherData = await weatherModel.getCityWeather(typedName);
+                        var weatherData =
+                            await weatherModel.getCityWeather(typedName);
                         updateUI(weatherData);
                       }
                     },

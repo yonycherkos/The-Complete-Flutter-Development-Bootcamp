@@ -1,5 +1,3 @@
-import 'dart:io';
-
 void main() {
   performTask();
 }
@@ -18,7 +16,7 @@ void task1() {
 Future<String> task2() async {
   Duration threeSecond = Duration(seconds: 3);
   String result;
-  await Future.delayed(threeSecond, (){
+  await Future.delayed(threeSecond, () {
     result = 'task 2 data';
     print('task 2 completed!');
   });

@@ -72,11 +72,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 title: 'Log In',
                 color: Colors.blueAccent,
                 onPressed: () async {
+                  setState(() {
+                    showSpinner = true;
+                  });
                   try {
-                    final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
+                    final user = await _auth.signInWithEmailAndPassword(
+                        email: email, password: password);
                     if (user != null) {
                       Navigator.pushNamed(context, ChatScreen.id);
                     }
+                    setState(() {
+                      showSpinner = false;
+                    });
                   } catch (e) {
                     print(e);
                   }
